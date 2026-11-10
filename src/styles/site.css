@@ -16,10 +16,12 @@
 
 :root {
   --paper: oklch(0.975 0.008 85);
-  --ink: oklch(0.22 0.03 255);
-  --gold: oklch(0.5 0.1 70);
-  --sand: oklch(0.935 0.018 85);
-  --rule: oklch(0.86 0.023 85);
+  --ink: #423d3d;
+  --blue: #3579b2;
+  --accent: #285e88;
+  --gold: #cfb03e;
+  --sand: #e4ddd1;
+  --rule: color-mix(in srgb, var(--ink) 19%, var(--sand));
   --radius: 0.5rem;
   --display: "Cormorant Garamond", Georgia, serif;
   --body: "Hanken Grotesk", Arial, sans-serif;
@@ -59,9 +61,8 @@ p, h1, h2, figure { margin: 0; }
   text-align: center;
   font-size: 0.75rem;
 }
-.button[aria-disabled="true"]:hover { background: var(--gold); }
-.brand { display: inline-flex; align-items: center; gap: 0.5rem; font: 600 clamp(1.5rem, 3vw, 1.9rem)/1 var(--display); white-space: nowrap; }
-.brand svg { width: 1.4rem; height: 1.4rem; color: var(--gold); }
+.brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+.brand img { width: auto; height: clamp(2.25rem, 4.3vw, 2.75rem); }
 .button {
   min-height: 44px;
   display: inline-flex;
@@ -73,8 +74,8 @@ p, h1, h2, figure { margin: 0; }
   border-radius: var(--radius);
   font-weight: 600;
 }
-.button-primary { background: var(--gold); color: #fffdf7; }
-.button-primary:hover { background: oklch(0.43 0.09 70); }
+.button-primary { background: var(--blue); color: white; }
+.button-primary:not([aria-disabled="true"]):hover { background: var(--accent); }
 .hero-actions .button-primary { padding-inline: 1.75rem; border-radius: 100vmax; }
 .button-secondary { padding-inline: 0; text-decoration: underline; text-underline-offset: 0.25em; }
 .topbar-contact { border-radius: 100vmax; font-size: 0.875rem; }
@@ -89,7 +90,7 @@ p, h1, h2, figure { margin: 0; }
   padding-bottom: 2.5rem;
 }
 .hero-copy { padding-block: 1.5rem; }
-.eyebrow { color: var(--gold); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.17em; text-transform: uppercase; }
+.eyebrow { color: var(--accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.17em; text-transform: uppercase; }
 h1, h2 { font-family: var(--display); font-weight: 500; letter-spacing: -0.036em; }
 h1 { font-size: clamp(3.15rem, 7.05vw, 6rem); line-height: 1.02; margin-block: 0.8rem 1.2rem; text-wrap: balance; }
 .hero-description { font-size: clamp(1rem, 1.6vw, 1.22rem); max-width: 43ch; }
@@ -98,6 +99,9 @@ h1 { font-size: clamp(3.15rem, 7.05vw, 6rem); line-height: 1.02; margin-block: 0
 .hero-photo img { height: 100%; object-fit: cover; object-position: center 40%; }
 
 .interlude { padding-block: clamp(7rem, 13vw, 10rem); text-align: center; }
+.interlude-mark { display: inline-flex; align-items: center; gap: 1.15rem; margin-bottom: 1.1rem; }
+.interlude-mark::before, .interlude-mark::after { content: ""; width: 2.75rem; border-top: 1px solid var(--rule); }
+.interlude-mark img { width: 3.5rem; height: auto; transform: rotate(-8deg); }
 .interlude p { font: 500 clamp(2.25rem, 5vw, 3.75rem)/1.05 var(--display); letter-spacing: -0.035em; }
 
 .destinations {
@@ -127,15 +131,15 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
 .gallery-controls button {
   width: 46px;
   height: 46px;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--accent);
   border-radius: 50%;
-  color: var(--gold);
+  color: var(--accent);
   background: transparent;
   font: inherit;
   font-size: 1.2rem;
   cursor: pointer;
 }
-.gallery-controls button:hover:not(:disabled) { background: var(--gold); color: white; }
+.gallery-controls button:hover:not(:disabled) { background: var(--accent); color: white; }
 .gallery-controls button:disabled { opacity: 0.38; cursor: default; }
 .gallery {
   position: relative;
@@ -148,7 +152,7 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--gallery-inset);
   scroll-behavior: smooth;
-  scrollbar-color: var(--gold) var(--sand);
+  scrollbar-color: var(--accent) var(--sand);
   scrollbar-width: thin;
 }
 .scroll-linked .gallery { overflow-x: hidden; scroll-snap-type: none; scroll-behavior: auto; }
@@ -197,7 +201,7 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
   gap: 1rem;
   padding: clamp(1.2rem, 3vw, 2.5rem);
 }
-.destination-more .eyebrow { color: #f8dd9e; }
+.destination-more .eyebrow { color: var(--gold); }
 .destination-more ul { padding: 0; margin: 0; list-style: none; font: 500 clamp(1.25rem, 2.4vw, 1.9rem)/1.05 var(--display); }
 .destination-more li + li { margin-top: 0.25rem; }
 .destination-more > p:last-child { font-size: 0.9rem; }
@@ -224,7 +228,6 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
 
 @media (max-width: 360px) {
   .topbar-contact { padding-inline: 0.6rem; font-size: 0.8rem; }
-  .brand { font-size: 1.35rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

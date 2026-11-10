@@ -27,19 +27,14 @@ const moreDestinations = [
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Agência de viagens em Ipanema, Rio de Janeiro. Roteiros sob medida, curadoria de hotéis e suporte emergencial 24h." />
     <title>{review ? "Prévia técnica | Rara Turismo" : "Rara Turismo | Agência de viagens em Ipanema, Rio"}</title>
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}brand/monogram.svg`} />
   </head>
   <body>
     <header class="topbar">
       {review && <p class="review-notice">Prévia técnica · revisão de layout e navegação</p>}
       <div class="shell topbar-inner">
         <a class="brand" href="#topo">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35">
-            <circle cx="12" cy="12" r="9.5" />
-            <ellipse cx="12" cy="12" rx="4.2" ry="9.5" />
-            <path d="M2.5 12h19M4.5 6.5h15M4.5 17.5h15" />
-          </svg>
-          Rara Turismo
+          <img src={`${base}brand/logo.svg`} alt="Rara Turismo" width="106" height="44" />
         </a>
         <a class="button button-primary topbar-contact" {...contact}>Falar no WhatsApp</a>
       </div>
@@ -63,7 +58,12 @@ const moreDestinations = [
         </div>
       </section>
 
-      <div class="shell interlude"><p>Roteiros tão únicos quanto você.</p></div>
+      <div class="shell interlude">
+        <div class="interlude-mark" aria-hidden="true">
+          <img src={`${base}brand/stamp-compass.webp`} alt="" width="173" height="224" loading="lazy" />
+        </div>
+        <p>Roteiros tão únicos quanto você.</p>
+      </div>
 
       <section class="destinations" id="destinos" aria-labelledby="destinations-title">
         <div class="gallery-stage">
