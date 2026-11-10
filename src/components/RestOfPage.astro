@@ -1,0 +1,268 @@
+---
+interface Props {
+  whatsapp: string;
+  base: string;
+  footer?: boolean;
+  review?: boolean;
+}
+
+const { whatsapp, base, footer = false, review = false } = Astro.props;
+const contact = (href: string) => review ? { "aria-disabled": "true" } : { href };
+const address = "R. Prudente de Morais, 1378 — Ipanema, Rio de Janeiro — RJ, 22041-040";
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`Rara Turismo, ${address}`)}&output=embed`;
+const mapLink = "https://maps.google.com/?cid=187773299751886460";
+const services = [
+  ["Roteiros sob medida", "Itinerários criados a partir do seu estilo de viagem, com destinos pelo Brasil e pelo mundo, de Itália e Grécia à Tailândia e aos países nórdicos."],
+  ["Curadoria de hotéis", "Seleção de hospedagens por destino, com a descrição de cada uma, para você escolher onde ficar com mais segurança."],
+  ["Guiamento na Disney e na Universal", "Guia virtual, que acompanha sua localização ao vivo pelo WhatsApp, ou presencial, dentro do parque. Indicamos o melhor formato para o seu grupo."],
+  ["Cruzeiros Disney", "Ajudamos a escolher entre os navios clássicos, os do Caribe e os mais temáticos, conforme o público e o momento da sua viagem."],
+  ["Suporte emergencial 24h", "Atendimento durante a viagem para resolver imprevistos nos bastidores, sem tirar o foco das suas férias."],
+  ["Viagens em grupo e Nordeste", "Planejamento para grupos e para destinos do Nordeste, como Cumbuco e Fortim, no Ceará, na temporada de kitesurf."],
+];
+const questions = [
+  ["Como funciona o guiamento nos parques da Disney e da Universal?", "Existem dois formatos. No virtual, o guia fala com você pelo WhatsApp, acompanha sua localização ao vivo e agenda atrações. No presencial, o guia está com você no parque, cuidando de horários e logística. A escolha depende do perfil do grupo, do orçamento e da autonomia que você quer."],
+  ["Os roteiros são prontos ou personalizados?", "Personalizados. Cada roteiro é construído sob medida para o seu estilo de viagem."],
+  ["O que recebo para organizar a viagem?", "Um site exclusivo e personalizado com seus vouchers em PDF, o roteiro dia a dia detalhado e dicas do destino."],
+  ["E se acontecer um imprevisto durante a viagem?", "A Rara oferece suporte emergencial 24h. A ideia é que o problema seja resolvido nos bastidores, sem virar o fim das suas férias."],
+  ["Onde fica a agência e qual o horário de atendimento?", "Ficamos na R. Prudente de Morais, 1378, em Ipanema, Rio de Janeiro. Atendemos de segunda a sábado, das 9h às 18h, e aos domingos, das 9h às 16h."],
+];
+---
+
+{footer ? (
+  <footer class="contact">
+    <div class="section-shell contact-inner">
+      <h2>Para onde vamos na sua próxima viagem?</h2>
+      <p class="contact-copy">Conte pelo WhatsApp o que você tem em mente. Montamos o roteiro com você.</p>
+      <a class="button button-primary contact-button" {...contact(whatsapp)}>Chamar no WhatsApp</a>
+      <div class="contact-meta">
+        <p>Rara Turismo · {address}</p>
+        <a {...contact("https://www.instagram.com/raraturismo/")}>Instagram</a>
+      </div>
+    </div>
+  </footer>
+) : (
+  <>
+    <section class="section-shell services" aria-labelledby="services-title">
+      <p class="eyebrow">O que fazemos</p>
+      <h2 id="services-title">Da escolha do destino ao último dia da viagem</h2>
+      <ol class="service-list">
+        {services.map(([name, description], index) => (
+          <li>
+            <span class="service-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <h3>{name}</h3>
+            <p>{description}</p>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="planning" aria-labelledby="planning-title">
+      <div class="section-shell planning-inner">
+        <figure class="planning-image">
+          <img src={`${base}images/tulipas.webp`} alt="Mulher de casaco caminhando em um campo de tulipas" width="900" height="1597" loading="lazy" decoding="async" />
+        </figure>
+        <div class="planning-copy">
+          <p class="eyebrow">Como trabalhamos</p>
+          <h2 id="planning-title">A viagem começa no planejamento.</h2>
+          <p>Na Rara, cada roteiro é construído para o seu estilo de viagem: do ritmo dos dias ao tipo de hotel, do destino ao perfil do grupo.</p>
+          <p>Fazemos a curadoria de cada aspecto da viagem para que imprevistos não tenham espaço. E, quando um deles aparece, você sabe com quem contar: nossa equipe oferece suporte emergencial 24h.</p>
+          <p>Antes de embarcar, você recebe um site exclusivo com seus vouchers em PDF, o roteiro dia a dia e dicas do destino, tudo reunido em um só lugar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Perguntas frequentes</h2>
+      <div class="faq-list">
+        {questions.map(([question, answer]) => (
+          <details>
+            <summary>{question}<span aria-hidden="true">+</span></summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-shell location" aria-labelledby="location-title">
+      <div>
+        <h2 id="location-title">Onde estamos</h2>
+        <address>{address}</address>
+        <a class="location-phone" {...contact("tel:+5521965094778")}>(21) 96509-4778</a>
+        <dl>
+          <div><dt>Seg a Sáb</dt><dd>09:00 – 18:00</dd></div>
+          <div><dt>Domingo</dt><dd>09:00 – 16:00</dd></div>
+        </dl>
+        <a class="location-link" href={mapLink}>Abrir no Google Maps <span aria-hidden="true">→</span></a>
+      </div>
+      <iframe src={mapEmbed} title="Mapa da Rara Turismo em Ipanema" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+  </>
+)}
+
+<style>
+  .section-shell {
+    width: min(100%, 72rem);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  h2 {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  .services, .location {
+    padding-block: clamp(6.5rem, 10vw, 9rem);
+  }
+
+  .services h2 { max-width: 42rem; }
+
+  .service-list, .faq-list {
+    margin: 3.5rem 0 0;
+    padding: 0;
+    border-block: 1px solid var(--rule);
+  }
+
+  .service-list li {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 1.4fr) auto;
+    align-items: baseline;
+    gap: 2rem;
+    padding-block: 2rem;
+  }
+
+  .service-list li + li, details + details {
+    border-top: 1px solid var(--rule);
+  }
+
+  .service-number {
+    color: var(--gold);
+    font: 500 1.3rem/1 var(--display);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .service-list h3 {
+    margin: 0;
+    font: 500 clamp(1.5rem, 3vw, 1.875rem)/1.07 var(--display);
+  }
+
+  .service-list li p, details p, .planning-copy > p:not(.eyebrow) {
+    color: color-mix(in srgb, var(--ink) 78%, var(--paper));
+  }
+
+  .service-arrow { color: var(--gold); }
+
+  .planning { background: var(--sand); }
+
+  .planning-inner, .location {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .planning-inner { padding-block: clamp(6.5rem, 12vw, 10rem); }
+
+  .planning-image {
+    overflow: hidden;
+    border-radius: var(--radius);
+    width: 100%;
+    aspect-ratio: 9 / 14;
+    max-height: 85svh;
+  }
+
+  .planning-image img { height: 100%; object-fit: cover; }
+
+  .planning-copy > p:not(.eyebrow) {
+    margin-top: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  .faq { max-width: 48rem; padding-block: 6rem; }
+  .faq-list { margin-top: 2.5rem; }
+
+  details { padding-block: 1.5rem; }
+
+  details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
+    list-style: none;
+    cursor: pointer;
+    font-size: 1.125rem;
+  }
+
+  details summary::-webkit-details-marker { display: none; }
+  details summary span { flex-shrink: 0; font-size: 1.35rem; line-height: 1; transition: transform 180ms ease; }
+  details[open] summary span { transform: rotate(45deg); }
+  details p { margin-top: 1rem; }
+
+  .location {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .location address {
+    margin-top: 2rem;
+    font-size: 1.125rem;
+    font-style: normal;
+  }
+
+  .location-phone { display: inline-block; margin-top: 0.5rem; font-size: 1.125rem; }
+
+  .location dl { margin: 2.5rem 0 0; }
+
+  .location dl > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--rule);
+    padding-block: 0.65rem;
+  }
+
+  .location dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .location-link { display: inline-block; margin-top: 2rem; color: var(--gold); }
+
+  .location iframe {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--sand);
+    filter: grayscale(1);
+  }
+
+  .contact { color: var(--paper); background: var(--ink); }
+  .contact-inner { padding-block: 7rem; }
+  .contact h2 { max-width: 48rem; font-size: clamp(3rem, 7vw, 4.5rem); }
+  .contact-copy { margin-top: 1.5rem; font-size: 1.125rem; opacity: 0.82; }
+  .contact-button { margin-top: 2.5rem; border-radius: 999px; padding: 1rem 1.75rem; }
+
+  .contact-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--paper) 24%, transparent);
+    font-size: 0.875rem;
+    opacity: 0.82;
+  }
+
+  .location a:hover, .contact-meta a:hover { text-decoration: underline; text-underline-offset: 0.24em; }
+
+  @media (max-width: 767px) {
+    .service-list li { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+    .service-arrow { display: none; }
+    .planning-inner, .location { grid-template-columns: minmax(0, 1fr); }
+    .contact-meta { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    details summary span { transition: none; }
+  }
+</style>
