@@ -20,18 +20,17 @@ const moreDestinations = [
 ];
 ---
 <!doctype html>
-<html lang="pt-BR" class:list={{ "review-build": review }}>
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="description" content="Agência de viagens em Ipanema, Rio de Janeiro. Roteiros sob medida, curadoria de hotéis e suporte emergencial 24h." />
-    <title>{review ? "Prévia técnica | Rara Turismo" : "Rara Turismo | Agência de viagens em Ipanema, Rio"}</title>
+    <meta name="description" content="Roteiros sob medida, indicação de hotéis e apoio durante a viagem com a Rara Turismo." />
+    <title>{review ? "Prévia técnica | Rara Turismo" : "Rara Turismo | Viagens sob medida"}</title>
     <link rel="icon" type="image/svg+xml" href={`${base}brand/monogram.svg`} />
   </head>
   <body>
     <header class="topbar">
-      {review && <p class="review-notice">Prévia técnica · revisão de layout e navegação</p>}
       <div class="shell topbar-inner">
         <a class="brand" href="#topo">
           <img src={`${base}brand/logo.svg`} alt="Rara Turismo" width="106" height="44" />
@@ -44,9 +43,8 @@ const moreDestinations = [
       <section class="hero" aria-labelledby="hero-title">
         <div class="shell hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">Ipanema · Rio de Janeiro</p>
             <h1 id="hero-title">Sua viagem desenhada sob medida, com alguém ao seu lado.</h1>
-            <p class="hero-description">Agência de viagens em Ipanema: curadoria de roteiros e hotéis, planejamento detalhado e suporte emergencial 24h.</p>
+            <p class="hero-description">A gente monta o roteiro com você, indica onde ficar e atende a qualquer hora se surgir um imprevisto na viagem.</p>
             <div class="hero-actions">
               <a class="button button-primary" {...contact}>Planejar minha viagem <span aria-hidden="true">↗</span></a>
               <a class="button button-secondary" href="#destinos">Ver destinos <span aria-hidden="true">↓</span></a>

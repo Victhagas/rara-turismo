@@ -2,7 +2,7 @@
 
 Prévia em Astro do site da Rara Turismo. A galeria acompanha a rolagem vertical em telas largas e aceita navegação lateral no celular. As fotos usadas são da Camila e foram obtidas nas versões WebP do site público atual.
 
-O GitHub Pages publica uma prévia técnica para revisão do layout e da navegação. Esse build exibe um aviso de revisão e desativa os atalhos de WhatsApp, telefone e Instagram. Os builds locais e do Cloudflare mantêm os links ativos.
+O GitHub Pages publica uma prévia técnica para revisão do layout e da navegação. Esse build identifica a prévia no título da aba e desativa os atalhos de WhatsApp, telefone e Instagram. Os builds locais e do Cloudflare mantêm os links ativos.
 
 ## Rodar e compilar
 

@@ -26,13 +26,11 @@
   --display: "Cormorant Garamond", Georgia, serif;
   --body: "Hanken Grotesk", Arial, sans-serif;
   --edge: max(5vw, (100vw - 1296px) / 2);
-  --nav-height: 72px;
-  --header-height: calc(var(--nav-height) + var(--review-height, 0px));
+  --header-height: 72px;
   color: var(--ink);
   background: var(--paper);
   font: 400 1rem/1.5 var(--body);
 }
-:root.review-build { --review-height: 28px; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
@@ -50,17 +48,7 @@ p, h1, h2, figure { margin: 0; }
   background: var(--paper);
   border-bottom: 1px solid var(--rule);
 }
-.topbar-inner { min-height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.review-notice {
-  min-height: var(--review-height);
-  display: grid;
-  place-items: center;
-  padding-inline: 0.75rem;
-  background: var(--ink);
-  color: var(--paper);
-  text-align: center;
-  font-size: 0.75rem;
-}
+.topbar-inner { min-height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
 .brand img { width: auto; height: clamp(2.25rem, 4.3vw, 2.75rem); }
 .button {
@@ -92,7 +80,7 @@ p, h1, h2, figure { margin: 0; }
 .hero-copy { padding-block: 1.5rem; }
 .eyebrow { color: var(--accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.17em; text-transform: uppercase; }
 h1, h2 { font-family: var(--display); font-weight: 500; letter-spacing: -0.036em; }
-h1 { font-size: clamp(3.15rem, 7.05vw, 6rem); line-height: 1.02; margin-block: 0.8rem 1.2rem; text-wrap: balance; }
+h1 { font-size: clamp(3.15rem, 7.05vw, 6rem); line-height: 1.02; margin-bottom: 1.2rem; text-wrap: balance; }
 .hero-description { font-size: clamp(1rem, 1.6vw, 1.22rem); max-width: 43ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 1.6rem; }
 .hero-photo { height: 88svh; max-height: calc(100svh - var(--header-height) - 2.5rem); overflow: hidden; border-radius: var(--radius); }
@@ -206,13 +194,12 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
 .destination-more li + li { margin-top: 0.25rem; }
 .destination-more > p:last-child { font-size: 0.9rem; }
 @media (max-width: 767px) {
-  :root { --edge: 20px; --nav-height: 64px; }
+  :root { --edge: 20px; --header-height: 64px; }
   .shell { width: calc(100% - 2 * var(--edge)); }
   .hero-inner { position: relative; display: flex; align-items: end; width: 100%; min-height: calc(100svh - var(--header-height)); padding: 0; }
   .hero-photo { position: absolute; inset: 0; height: 100%; max-height: none; border-radius: 0; }
   .hero-photo::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 55%); }
   .hero-copy { position: relative; z-index: 1; width: min(100%, 36rem); padding: 5rem var(--edge) clamp(3rem, 13svh, 7rem); color: #fffdf7; }
-  .hero-copy .eyebrow { color: #f8dd9e; }
   h1 { font-size: clamp(2.65rem, 11vw, 3rem); }
   .hero-actions { gap: 0.9rem; }
   .hero-actions .button { font-size: 0.875rem; }
