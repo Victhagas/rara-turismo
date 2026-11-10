@@ -18,10 +18,13 @@
   --paper: oklch(0.975 0.008 85);
   --ink: #423d3d;
   --blue: #3579b2;
+  --button-ink: white;
   --accent: #285e88;
   --gold: #cfb03e;
   --sand: #e4ddd1;
   --rule: color-mix(in srgb, var(--ink) 19%, var(--sand));
+  --panel-dark: var(--ink);
+  --panel-light: var(--paper);
   --radius: 0.5rem;
   --display: "Cormorant Garamond", Georgia, serif;
   --body: "Hanken Grotesk", Arial, sans-serif;
@@ -49,6 +52,20 @@ p, h1, h2, figure { margin: 0; }
   border-bottom: 1px solid var(--rule);
 }
 .topbar-inner { min-height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.topbar-actions { display: flex; align-items: center; gap: clamp(0.45rem, 2vw, 1.1rem); }
+.edition-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding-inline: 0.55rem;
+  border-radius: 100vmax;
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.edition-link:hover { background: var(--sand); }
+.edition-link svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 .brand { display: inline-flex; align-items: center; flex-shrink: 0; }
 .brand img { width: auto; height: clamp(2.25rem, 4.3vw, 2.75rem); }
 .button {
@@ -62,11 +79,11 @@ p, h1, h2, figure { margin: 0; }
   border-radius: var(--radius);
   font-weight: 600;
 }
-.button-primary { background: var(--blue); color: white; }
+.button-primary { background: var(--blue); color: var(--button-ink); }
 .button-primary:not([aria-disabled="true"]):hover { background: var(--accent); }
 .hero-actions .button-primary { padding-inline: 1.75rem; border-radius: 100vmax; }
 .button-secondary { padding-inline: 0; text-decoration: underline; text-underline-offset: 0.25em; }
-.topbar-contact { border-radius: 100vmax; font-size: 0.875rem; }
+.topbar-contact { border-radius: 100vmax; font-size: 0.875rem; white-space: nowrap; }
 
 .hero { padding-top: var(--header-height); }
 .hero-inner {
@@ -83,8 +100,36 @@ h1, h2 { font-family: var(--display); font-weight: 500; letter-spacing: -0.036em
 h1 { font-size: clamp(3.15rem, 7.05vw, 6rem); line-height: 1.02; margin-bottom: 1.2rem; text-wrap: balance; }
 .hero-description { font-size: clamp(1rem, 1.6vw, 1.22rem); max-width: 43ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 1.6rem; }
-.hero-photo { height: 88svh; max-height: calc(100svh - var(--header-height) - 2.5rem); overflow: hidden; border-radius: var(--radius); }
+.hero-photo { position: relative; height: 88svh; max-height: calc(100svh - var(--header-height) - 2.5rem); overflow: hidden; border-radius: var(--radius); }
 .hero-photo img { height: 100%; object-fit: cover; object-position: center 40%; }
+.hero-motion { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.scene-caption {
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.scene-caption span, .motion-toggle { background: rgb(10 20 25 / 79%); border: 1px solid rgb(255 255 255 / 25%); border-radius: 100vmax; }
+.scene-caption span { padding: 0.52rem 0.8rem; }
+.motion-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
+.motion-toggle:hover { background: #102028; }
+.motion-toggle svg { width: 1.3rem; height: 1.3rem; }
+.motion-toggle[hidden], .motion-toggle .motion-play, .motion-toggle[aria-pressed="true"] .motion-pause { display: none; }
+.motion-toggle[aria-pressed="true"] .motion-play { display: block; }
 
 .interlude { padding-block: clamp(7rem, 13vw, 10rem); text-align: center; }
 .interlude-mark { display: inline-flex; align-items: center; gap: 1.15rem; margin-bottom: 1.1rem; }
@@ -181,8 +226,8 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
 .destination-number::after { content: ""; display: inline-block; width: 1.75rem; margin-left: 0.65rem; vertical-align: middle; border-top: 1px solid currentColor; }
 .destination-name { font: 500 clamp(1.65rem, 3vw, 2.65rem)/1.05 var(--display); }
 .destination-more {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--panel-dark);
+  color: var(--panel-light);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -198,6 +243,7 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
   .shell { width: calc(100% - 2 * var(--edge)); }
   .hero-inner { position: relative; display: flex; align-items: end; width: 100%; min-height: calc(100svh - var(--header-height)); padding: 0; }
   .hero-photo { position: absolute; inset: 0; height: 100%; max-height: none; border-radius: 0; }
+  .hero-photo[data-day-motion] img { object-position: 58% 40%; }
   .hero-photo::after { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 55%); }
   .hero-copy { position: relative; z-index: 1; width: min(100%, 36rem); padding: 5rem var(--edge) clamp(3rem, 13svh, 7rem); color: #fffdf7; }
   h1 { font-size: clamp(2.65rem, 11vw, 3rem); }
@@ -214,7 +260,10 @@ h2 { font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: 1; margin-top: 0.6rem; 
 }
 
 @media (max-width: 360px) {
-  .topbar-contact { padding-inline: 0.6rem; font-size: 0.8rem; }
+  .topbar-inner { gap: 0.5rem; }
+  .brand img { height: 2rem; }
+  .topbar-contact { padding-inline: 0.5rem; font-size: 0.77rem; }
+  .edition-link { gap: 0.2rem; padding-inline: 0.3rem; font-size: 0.77rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

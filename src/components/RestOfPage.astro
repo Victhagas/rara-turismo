@@ -12,27 +12,27 @@ const address = "R. Prudente de Morais, 1378 — Ipanema, Rio de Janeiro — RJ,
 const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(`Rara Turismo, ${address}`)}&output=embed`;
 const mapLink = "https://maps.google.com/?cid=187773299751886460";
 const services = [
-  ["Roteiros sob medida", "Itinerários criados a partir do seu estilo de viagem, com destinos pelo Brasil e pelo mundo, de Itália e Grécia à Tailândia e aos países nórdicos."],
-  ["Curadoria de hotéis", "Seleção de hospedagens por destino, com a descrição de cada uma, para você escolher onde ficar com mais segurança."],
-  ["Guiamento na Disney e na Universal", "Guia virtual, que acompanha sua localização ao vivo pelo WhatsApp, ou presencial, dentro do parque. Indicamos o melhor formato para o seu grupo."],
-  ["Cruzeiros Disney", "Ajudamos a escolher entre os navios clássicos, os do Caribe e os mais temáticos, conforme o público e o momento da sua viagem."],
-  ["Suporte emergencial 24h", "Atendimento durante a viagem para resolver imprevistos nos bastidores, sem tirar o foco das suas férias."],
-  ["Viagens em grupo e Nordeste", "Planejamento para grupos e para destinos do Nordeste, como Cumbuco e Fortim, no Ceará, na temporada de kitesurf."],
+  ["Roteiros sob medida", "O roteiro parte do que você quer fazer. Organizamos viagens pelo Brasil e por destinos como Itália, Grécia, Tailândia e países nórdicos."],
+  ["Indicação de hotéis", "Você recebe sugestões de hospedagem para cada destino, com detalhes de cada opção para decidir onde ficar."],
+  ["Guias na Disney e na Universal", "Você pode contar com um guia no parque ou receber orientação pelo WhatsApp, com acompanhamento da sua localização em tempo real."],
+  ["Cruzeiros Disney", "A gente ajuda a comparar os navios, dos clássicos aos mais temáticos, e a escolher um roteiro, incluindo opções pelo Caribe."],
+  ["Ajuda 24 horas durante a viagem", "Se surgir uma emergência na viagem, fale com a gente para encontrar uma saída."],
+  ["Viagens em grupo e pelo Nordeste", "Organizamos viagens em grupo e roteiros pelo Nordeste. Na temporada de kitesurf, dá para ir a Cumbuco ou Fortim, no Ceará."],
 ];
 const questions = [
-  ["Como funciona o guiamento nos parques da Disney e da Universal?", "Existem dois formatos. No virtual, o guia fala com você pelo WhatsApp, acompanha sua localização ao vivo e agenda atrações. No presencial, o guia está com você no parque, cuidando de horários e logística. A escolha depende do perfil do grupo, do orçamento e da autonomia que você quer."],
-  ["Os roteiros são prontos ou personalizados?", "Personalizados. Cada roteiro é construído sob medida para o seu estilo de viagem."],
-  ["O que recebo para organizar a viagem?", "Um site exclusivo e personalizado com seus vouchers em PDF, o roteiro dia a dia detalhado e dicas do destino."],
-  ["E se acontecer um imprevisto durante a viagem?", "A Rara oferece suporte emergencial 24h. A ideia é que o problema seja resolvido nos bastidores, sem virar o fim das suas férias."],
-  ["Onde fica a agência e qual o horário de atendimento?", "Ficamos na R. Prudente de Morais, 1378, em Ipanema, Rio de Janeiro. Atendemos de segunda a sábado, das 9h às 18h, e aos domingos, das 9h às 16h."],
+  ["Como funcionam os guias na Disney e na Universal?", "Com o guia virtual, você conversa pelo WhatsApp. Ele acompanha sua localização em tempo real e agenda as atrações. O guia presencial acompanha você no parque e cuida dos horários e dos deslocamentos. A gente ajuda a escolher conforme o grupo, o orçamento e o quanto você quer fazer por conta própria."],
+  ["O roteiro é pronto ou vocês montam do zero?", "A gente monta o roteiro para você, levando em conta quem vai viajar, o que vocês querem fazer e o ritmo que preferem."],
+  ["Onde ficam os vouchers e o roteiro?", "Você recebe um site só da sua viagem. Lá estão os vouchers para baixar em PDF, o roteiro de cada dia e dicas do destino."],
+  ["Com quem falo se tiver um imprevisto na viagem?", "Com a nossa equipe. O atendimento para emergências durante a viagem funciona 24 horas."],
+  ["Posso passar na agência? Em que horário?", "Sim. Ficamos na R. Prudente de Morais, 1378, em Ipanema, Rio de Janeiro. Atendemos de segunda a sábado, das 9h às 18h, e aos domingos, das 9h às 16h."],
 ];
 ---
 
 {footer ? (
   <footer class="contact">
     <div class="section-shell contact-inner">
-      <h2>Para onde vamos na sua próxima viagem?</h2>
-      <p class="contact-copy">Conte pelo WhatsApp o que você tem em mente. Montamos o roteiro com você.</p>
+      <h2>Vamos conversar sobre sua viagem?</h2>
+      <p class="contact-copy">Mande uma mensagem com o que você já sabe da viagem. Pode ser só uma ideia de destino.</p>
       <a class="button button-primary contact-button" {...contact(whatsapp)}>Chamar no WhatsApp</a>
       <div class="contact-meta">
         <div class="footer-address">
@@ -48,8 +48,8 @@ const questions = [
 ) : (
   <>
     <section class="section-shell services" aria-labelledby="services-title">
-      <p class="eyebrow">O que fazemos</p>
-      <h2 id="services-title">Da escolha do destino ao último dia da viagem</h2>
+      <p class="eyebrow">Serviços</p>
+      <h2 id="services-title">Como a gente pode ajudar na sua viagem</h2>
       <ol class="service-list">
         {services.map(([name, description], index) => (
           <li>
@@ -68,11 +68,11 @@ const questions = [
           <img src={`${base}images/tulipas.webp`} alt="Mulher de casaco caminhando em um campo de tulipas" width="900" height="1597" loading="lazy" decoding="async" />
         </figure>
         <div class="planning-copy">
-          <p class="eyebrow">Como trabalhamos</p>
-          <h2 id="planning-title">A viagem começa no planejamento.</h2>
-          <p>Na Rara, cada roteiro é construído para o seu estilo de viagem: do ritmo dos dias ao tipo de hotel, do destino ao perfil do grupo.</p>
-          <p>Fazemos a curadoria de cada aspecto da viagem para que imprevistos não tenham espaço. E, quando um deles aparece, você sabe com quem contar: nossa equipe oferece suporte emergencial 24h.</p>
-          <p>Antes de embarcar, você recebe um site exclusivo com seus vouchers em PDF, o roteiro dia a dia e dicas do destino, tudo reunido em um só lugar.</p>
+          <p class="eyebrow">Planejamento</p>
+          <h2 id="planning-title">Como a gente monta seu roteiro</h2>
+          <p>Primeiro, a gente conversa sobre quem vai viajar, que tipo de hotel vocês preferem e quanto tempo livre querem ter.</p>
+          <p>Depois, organizamos o roteiro dia a dia. Se surgir um imprevisto durante a viagem, nossa equipe atende a qualquer hora.</p>
+          <p>Antes de viajar, você recebe um site só da sua viagem, com os vouchers em PDF, o roteiro de cada dia e dicas do destino.</p>
         </div>
       </div>
     </section>
@@ -98,8 +98,8 @@ const questions = [
         <address>{address}</address>
         <a class="location-phone" {...contact("tel:+5521965094778")}>(21) 96509-4778</a>
         <dl>
-          <div><dt>Seg a Sáb</dt><dd>09:00 – 18:00</dd></div>
-          <div><dt>Domingo</dt><dd>09:00 – 16:00</dd></div>
+          <div><dt>Segunda a sábado</dt><dd>9h às 18h</dd></div>
+          <div><dt>Domingo</dt><dd>9h às 16h</dd></div>
         </dl>
         <a class="location-link" href={mapLink}>Abrir no Google Maps <span aria-hidden="true">→</span></a>
       </div>
@@ -248,11 +248,11 @@ const questions = [
     filter: grayscale(1);
   }
 
-  .contact { color: var(--paper); background: var(--ink); }
+  .contact { color: var(--panel-light); background: var(--panel-dark); }
   .contact-inner { padding-block: 7rem; }
   .contact h2 { max-width: 48rem; font-size: clamp(3rem, 7vw, 4.5rem); }
   .contact-copy { margin-top: 1.5rem; font-size: 1.125rem; opacity: 0.82; }
-  .contact-button { margin-top: 2.5rem; border-radius: 999px; padding: 1rem 1.75rem; color: var(--ink); background: var(--gold); }
+  .contact-button { margin-top: 2.5rem; border-radius: 999px; padding: 1rem 1.75rem; color: #423d3d; background: var(--gold); }
   .contact-button:not([aria-disabled="true"]):hover { background: color-mix(in srgb, var(--gold) 85%, white); }
 
   .contact-meta {
@@ -262,7 +262,7 @@ const questions = [
     gap: 1rem;
     margin-top: 6rem;
     padding-top: 2rem;
-    border-top: 1px solid color-mix(in srgb, var(--paper) 24%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--panel-light) 24%, transparent);
     font-size: 0.875rem;
   }
   .footer-address { display: flex; align-items: center; gap: 1rem; }
